@@ -155,8 +155,7 @@ def gen_aplist():
             # class kismetanalyzer.model.AccessPoint
             strongest = parameters.strongest
             ap = AccessPoint.from_json(dev, strongest)
-            print "main2"
-            # Apply SSID filter if it is used as parameter (this switch 
+            # Apply SSID filter if it is used as parameter (this switch
             # checks the included SSID list, which is provided by the 
             # parameter --ssid 
             if parameters.ssid is not None:

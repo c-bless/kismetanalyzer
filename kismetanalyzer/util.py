@@ -5,6 +5,17 @@
 import re
 
 
+def parse_clientmap(dev):
+    clients = []
+    if 'dot11.device' in dev:
+        if "dot11.device.associated_client_map" in dev['dot11.device']:
+            temp = dev['dot11.device']["dot11.device.associated_client_map"]
+            for k in temp:
+                # the key contains the client MAC address. only this is added to the client list
+                clients.append(k)
+    return clients
+
+
 def parse_networkname(dev):
     """
     This fuction is used to parse the network name (SSID) from the json 
@@ -45,13 +56,11 @@ def parse_loc(dev, strongest=False):
     lon = "0" 
     lat = "0"
     alt = "0"
-    print "parse loc1"
     if 'kismet.device.base.location' in dev:
         if strongest:
             # strongest location
             if 'kismet.common.location.max_loc' in dev['kismet.device.base.location']:
                 loc = dev['kismet.device.base.location']['kismet.common.location.max_loc']
-                print loc
                 lon = loc['kismet.common.location.lon']
                 lat = loc['kismet.common.location.lat']
                 alt = loc['kismet.common.location.alt']
@@ -59,12 +68,10 @@ def parse_loc(dev, strongest=False):
             # average location
             if 'kismet.common.location.avg_loc' in dev['kismet.device.base.location']:
                 loc =  dev['kismet.device.base.location']['kismet.common.location.avg_loc']
-                print loc
                 lon = loc['kismet.common.location.lon']
                 lat = loc['kismet.common.location.lat']
                 alt = loc['kismet.common.location.alt']
     
-    print "parse loc2"
     return (lon, lat, alt)
     
 def parse_mac(dev):

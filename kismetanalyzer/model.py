@@ -1,5 +1,5 @@
 from kismetanalyzer.util import parse_encryption, parse_channel, parse_loc, parse_frequency, parse_networkname, \
-    parse_manufacturer, parse_mac
+    parse_manufacturer, parse_mac, parse_clientmap
 
 class Location(object):
 
@@ -49,7 +49,6 @@ class AccessPoint(object):
         self._channel = channel
         self._manufacturer = manufacturer
         self._client_map = client_map
-        print "init"
 
     @property
     def ssid(self):
@@ -109,6 +108,15 @@ class AccessPoint(object):
     def manufacturer(self, value):
         self._manufacturer = value
 
+    @property
+    def client_map(self):
+        return self._client_map
+
+    @client_map.setter
+    def client_map(self, value=[]):
+        self._client_map = value
+
+
     @classmethod
     def from_json(cls, dev, strongest=False):
         ap = AccessPoint()
@@ -118,5 +126,8 @@ class AccessPoint(object):
         ap.ssid = parse_networkname(dev)
         ap.mac = parse_mac(dev)
         ap.encryption = parse_encryption(dev)
-
+        ap.frequency = parse_frequency(dev)
+        ap.channel = parse_channel(dev)
+        ap.manufacturer = parse_manufacturer(dev)
+        ap._client_map = parse_clientmap(dev)
         return ap

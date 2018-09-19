@@ -63,6 +63,6 @@ target/
 .idea
 
 # temp created result files
-.kml
-.csv
+*.kml
+*.csv
 
