@@ -25,15 +25,16 @@ def get_description(ap):
     :return: A string which can be used as description for the device
     :rtype string
     """
-    desc = "MAC: {0}\nEncryption: {1}\nFrequency: {2}\nChannel: {3}\nManufacturer: {4}"
-    description = desc.format(ap.mac, ap.encryption, ap.frequency, ap.channel, ap.manufacturer)
+    clients = "\n".join(ap.client_map)
+    desc = "MAC: {0}\nEncryption: {1}\nFrequency: {2}\nChannel: {3}\nManufacturer: {4}\n\nClients:\n{5}"
+    description = desc.format(ap.mac, ap.encryption, ap.frequency, ap.channel, ap.manufacturer, clients)
     return description
     
     
 def get_networkcolor(encryption):
     """
     This fuction is used to get color for a network which will be added 
-    to a KML-File.
+    to a KML-File.s
     
     :param encryption: encryption string 
     
