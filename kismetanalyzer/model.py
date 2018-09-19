@@ -38,12 +38,11 @@ class Location(object):
 
 class AccessPoint(object):
 
-    def __init__(self, ssid="", mac="", encryption="", description="",location = None, frequency="", channel="",
+    def __init__(self, ssid="", mac="", encryption="", location = None, frequency="", channel="",
                  manufacturer="", client_map=[]):
         self._ssid = ssid
         self._mac = mac
         self._encryption = encryption
-        self._description = description
         self._location = location
         self._frequency = frequency
         self._channel = channel

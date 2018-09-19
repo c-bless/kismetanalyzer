@@ -16,21 +16,18 @@ from kismetanalyzer.model import AccessPoint
 from kismetanalyzer.util import does_ssid_matches
 
 
-def get_description(dev):
+def get_description(ap):
     """
-    This fuction is used to creat the description string for the device.
+    This fuction is used to create the description string for the device.
     
-    :param dev: json string from the kismet database column "device"
+    :param ap: instance of kismetanalzer.model.AccessPoint class
     
     :return: A string which can be used as description for the device
     :rtype string
     """
-    desc = "Encryption: {0}\nFrequency: {1}\nChannel: {2}\nManufacturer: {3}"
-    #description = desc.format(ka_parser.parse_encryption(dev),
-    #                        ka_parser.parse_frequency(dev),
-    #                        ka_parser.parse_channel(dev),
-    #                        ka_parser.parse_manufacturer(dev))
-    return desc
+    desc = "MAC: {0}\nEncryption: {1}\nFrequency: {2}\nChannel: {3}\nManufacturer: {4}"
+    description = desc.format(ap.mac, ap.encryption, ap.frequency, ap.channel, ap.manufacturer)
+    return description
     
     
 def get_networkcolor(encryption):
@@ -99,7 +96,7 @@ def export_kml(filename, title, devices):
         pt.coords = [(dev.location.lon, dev.location.lat, dev.location.alt)]
         icon_color = get_networkcolor(dev.encryption)
         pt.style.iconstyle.color = icon_color
-        pt.description = dev.encryption
+        pt.description = get_description(dev)
         num_plotted = num_plotted + 1
         
     kml.save(outfile)
