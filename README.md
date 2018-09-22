@@ -57,3 +57,4 @@ Export only access points with encryption type "Open" to csv and kml files:
 kismet_analyzer_aplist --in input.kismet --out test --encryption "Open" --kml --csv 
 Exported 11 devices to test.csv
 Exported 11 devices to test.kml
+```
