@@ -115,7 +115,7 @@ def gen_aplist():
     parser.add_argument("--encryption", action="store", dest="encryption", default=None, help="show only networks with given encryption type" )
     parser.add_argument("--csv", action="store_true", dest="csv", default=False, help="export results to csv")
     parser.add_argument("--kml", action="store_true", dest="kml", default=False, help="export results to kml")
-    
+    parser.add_argument("--verbose", action="store_true", dest="verbose", default=False, help="Print MAC, SSID, encryption type to stdout")
     parameters = parser.parse_args()
 
     # set the filename prefix for the output file  if it not specified 
@@ -174,7 +174,11 @@ def gen_aplist():
             if parameters.encryption:
                 if not parameters.encryption in ap.encryption:
                     continue
-                    
+
+
+            if parameters.verbose:
+                print "{:20s}{:20s}{:40s}".format(ap.mac, ap.encryption, ap.ssid)
+
             devs.append(ap)
         
         except Exception as e:

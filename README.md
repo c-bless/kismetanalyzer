@@ -3,7 +3,7 @@ This library can be used to analyze the results of the new Kismet version.
 
 The following scripts will be installed:
 
-1. **kismet_analyzer_aplist:** This script can be used to extract access points from the SQLite database **.kismet* and export these results to *csv* and *kml*.
+1. **kismet_analyzer_aplist:** This script can be used to extract access points from the SQLite database *<db>.kismet* and export these results to *csv* and *kml*
 
 
 ## License
@@ -23,5 +23,4 @@ python setup.py install
 ```
 
 ## Usage:
-
 
