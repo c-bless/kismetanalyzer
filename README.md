@@ -24,3 +24,36 @@ python setup.py install
 
 ## Usage:
 
+```
+(venv)[kismet-analyzer]$ kismet_analyzer_aplist -h
+usage: kismet_analyzer_aplist [-h] --in INFILE [--out OUTFILE] [--title TITLE]
+                              [--ssid SSID] [--exclude-ssid EXCLUDESSID]
+                              [--strongest-point] [--encryption ENCRYPTION]
+                              [--csv] [--kml] [--verbose]
+
+Kismet to KML Log Converter
+
+optional arguments:
+  -h, --help            Show this help message and exit
+  --in INFILE           Input file (.kismet) 
+  --out OUTFILE         Output filename (optional)
+  --title TITLE         Title embedded in KML file
+  --ssid SSID           Only plot networks which match the SSID (or SSID
+                        regex)
+  --exclude-ssid EXCLUDESSID
+                        Exclude networks which match the SSID (or SSID
+                        regex)
+  --strongest-point     Plot points based on strongest signal
+  --encryption ENCRYPTION
+                        Show only networks with given encryption type
+  --csv                 Export results to csv
+  --kml                 Export results to kml
+  --verbose             Print MAC, SSID, encryption type to stdout
+
+```
+
+Export only access points with encryption type "Open" to csv and kml files:
+```
+kismet_analyzer_aplist --in input.kismet --out test --encryption "Open" --kml --csv 
+Exported 11 devices to test.csv
+Exported 11 devices to test.kml

@@ -106,15 +106,15 @@ def export_kml(filename, title, devices):
 
 def gen_aplist():
     parser = argparse.ArgumentParser(description="Kismet to KML Log Converter")
-    parser.add_argument("--in", action="store", dest="infile", required=True, help='Input (.kismet) file')
+    parser.add_argument("--in", action="store", dest="infile", required=True, help='Input file (.kismet)')
     parser.add_argument("--out", action="store", dest="outfile", help='Output filename (optional)')
     parser.add_argument("--title", action="store", dest="title", default="Kismet", help='Title embedded in KML file')
     parser.add_argument("--ssid", action="store", dest="ssid", help='Only plot networks which match the SSID (or SSID regex)')
-    parser.add_argument("--exclude-ssid", action="store", dest="excludessid", help='Only plot networks which match the SSID (or SSID regex)')
+    parser.add_argument("--exclude-ssid", action="store", dest="excludessid", help='Exclude networks which match the SSID (or SSID regex)')
     parser.add_argument("--strongest-point", action="store_true", dest="strongest", default=False, help='Plot points based on strongest signal')
-    parser.add_argument("--encryption", action="store", dest="encryption", default=None, help="show only networks with given encryption type" )
-    parser.add_argument("--csv", action="store_true", dest="csv", default=False, help="export results to csv")
-    parser.add_argument("--kml", action="store_true", dest="kml", default=False, help="export results to kml")
+    parser.add_argument("--encryption", action="store", dest="encryption", default=None, help="Show only networks with given encryption type" )
+    parser.add_argument("--csv", action="store_true", dest="csv", default=False, help="Export results to csv")
+    parser.add_argument("--kml", action="store_true", dest="kml", default=False, help="Export results to kml")
     parser.add_argument("--verbose", action="store_true", dest="verbose", default=False, help="Print MAC, SSID, encryption type to stdout")
     parameters = parser.parse_args()
 
