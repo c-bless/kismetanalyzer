@@ -11,12 +11,12 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='kismet-analyzer',
-    version='0.1.0',
+    version='0.2.0',
     author='Christoph Bless',
     author_email='bitbucket@cbless.de',
     url='',
     license=' GPLv3',
-    description=('TODO'),
+    description=('Library for parsing kismet results from the .kismet database file.'),
     long_description=long_description,
     packages=['kismetanalyzer'],
     install_requires=[
@@ -25,7 +25,8 @@ setup(
     ],
     entry_points = {
         "console_scripts": [
-            "kismet_analyzer_aplist = kismetanalyzer.aplist:gen_aplist"
+            "kismet_analyzer_aplist = kismetanalyzer.aplist:gen_aplist",
+            "kismet_analyzer_clientlist = kismetanalyzer.clientlist:gen_clientlist",
         ]
     }
 )

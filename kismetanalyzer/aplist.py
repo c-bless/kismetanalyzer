@@ -5,13 +5,14 @@
 #
 # @author Christoph Bless
 # 
-
+from __future__ import print_function
 
 import argparse
 import json
 import sqlite3
 import sys
 import simplekml
+
 from kismetanalyzer.model import AccessPoint
 from kismetanalyzer.util import does_ssid_matches
 
@@ -74,7 +75,7 @@ def export_csv(filename, devices, delimiter=";"):
             w.writerow([dev.mac, dev.ssid, dev.encryption])
             num_plotted = num_plotted + 1
         
-    print "Exported {} devices to {}".format(num_plotted, outfile)
+    print ("Exported {} devices to {}".format(num_plotted, outfile))
         
         
 def export_kml(filename, title, devices):
@@ -101,7 +102,7 @@ def export_kml(filename, title, devices):
         num_plotted = num_plotted + 1
         
     kml.save(outfile)
-    print "Exported {} devices to {}".format(num_plotted, outfile)
+    print ("Exported {} devices to {}".format(num_plotted, outfile))
 
 
 def gen_aplist():
@@ -118,7 +119,7 @@ def gen_aplist():
     parser.add_argument("--verbose", action="store_true", dest="verbose", default=False, help="Print MAC, SSID, encryption type to stdout")
     parameters = parser.parse_args()
 
-    # set the filename prefix for the output file  if it not specified 
+    # set the filename prefix for the output file if it is not specified
     # via the parameter --out
     if parameters.outfile is None:
         if parameters.infile.endswith(".kismet"):
@@ -129,7 +130,7 @@ def gen_aplist():
     try:
         db = sqlite3.connect(parameters.infile)
     except Exception as e:
-        print "Failed to open kismet logfile: ", e
+        print ("Failed to open kismet logfile: {0}".format(e))
         sys.exit(1)
     
     try:  
@@ -137,7 +138,7 @@ def gen_aplist():
         c = db.cursor()
         sql_result = c.execute(sql)    
     except:
-        print "Failed to extract data from database"
+        print ("Failed to extract data from database")
         sys.exit()
     
     # container for collecting relevant devices
@@ -177,7 +178,7 @@ def gen_aplist():
 
 
             if parameters.verbose:
-                print "{:20s}{:20s}{:40s}".format(ap.mac, ap.encryption, ap.ssid)
+                print ("{:20s}{:20s}{:40s}".format(ap.mac, ap.encryption, ap.ssid))
 
             devs.append(ap)
         
