@@ -105,7 +105,7 @@ def export_kml(filename, title, devices):
 
 
 def gen_aplist():
-    parser = argparse.ArgumentParser(description="Kismet to KML Log Converter")
+    parser = argparse.ArgumentParser(description="List access points discovered by kismet.")
     parser.add_argument("--in", action="store", dest="infile", required=True, help='Input file (.kismet)')
     parser.add_argument("--out", action="store", dest="outfile", help='Output filename (optional)')
     parser.add_argument("--title", action="store", dest="title", default="Kismet", help='Title embedded in KML file')
@@ -165,7 +165,7 @@ def gen_aplist():
             # checks the excluded SSID list, which is provided by the 
             # parameter --exclude-ssid )
             if parameters.excludessid is not None:
-                if does_ssid_matches(dev, parameters.ssid):
+                if does_ssid_matches(dev, parameters.excludessid):
                     # SSID matches, skip this access point
                     continue
             
