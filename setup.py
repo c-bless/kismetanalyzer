@@ -20,7 +20,6 @@ setup(
     long_description=long_description,
     packages=['kismetanalyzer'],
     install_requires=[
-        'argparse',
         'simplekml'
     ],
     entry_points = {
