@@ -1,4 +1,5 @@
-This library can be used to analyze the results of the new Kismet version. 
+This library can be used to analyze the results of the new Kismet version. To filter encryption types version "f07735c" (Aug 19, 2018) or later is required.
+
 
 
 The following scripts will be installed:
@@ -58,3 +59,5 @@ kismet_analyzer_aplist --in input.kismet --out test --encryption "Open" --kml --
 Exported 11 devices to test.csv
 Exported 11 devices to test.kml
 ```
+
+![Kismet-Analyzer-img](images/Kismet-Analyzer-img.png)
