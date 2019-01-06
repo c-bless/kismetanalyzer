@@ -60,4 +60,4 @@ Exported 11 devices to test.csv
 Exported 11 devices to test.kml
 ```
 
-![Kismet-Analyzer-img](images/Kismet-Analyzer-img.png)
+![Kismet-Analyzer-img](images/kismet-analyzer-img.png)
