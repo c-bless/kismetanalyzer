@@ -14,7 +14,7 @@ setup(
     version='0.2.0',
     author='Christoph Bless',
     author_email='bitbucket@cbless.de',
-    url='',
+    url='https://bitbucket.org/cbless/kismetanalyzer',
     license=' GPLv3',
     description=('Library for parsing kismet results from the .kismet database file.'),
     long_description=long_description,
