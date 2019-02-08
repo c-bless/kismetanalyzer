@@ -1,4 +1,4 @@
-This library can be used to analyze the results of the new Kismet version. To filter encryption types version "f07735c" (Aug 19, 2018) or later is required.
+This library can be used to analyze the results of the new Kismet version. To filter encryption types [Kismet](https://github.com/kismetwireless/kismet) version "f07735c" (Aug 19, 2018) or later is required.
 
 
 
