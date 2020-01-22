@@ -11,7 +11,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='kismet-analyzer',
-    version='0.2.1',
+    version='0.2.2',
     author='Christoph Bless',
     author_email='bitbucket@cbless.de',
     url='https://bitbucket.org/cbless/kismetanalyzer',
@@ -20,7 +20,9 @@ setup(
     long_description=long_description,
     packages=['kismetanalyzer'],
     install_requires=[
-        'simplekml'
+        'fastkml',
+        'pygeoif',
+        'lxml'
     ],
     entry_points = {
         "console_scripts": [

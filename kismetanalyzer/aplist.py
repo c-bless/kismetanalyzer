@@ -11,7 +11,9 @@ import argparse
 import json
 import sqlite3
 import sys
-import simplekml
+
+from fastkml import kml, styles
+from pygeoif import geometry
 
 from kismetanalyzer.model import AccessPoint
 from kismetanalyzer.util import does_ssid_matches
@@ -43,13 +45,17 @@ def get_networkcolor(encryption):
     :rtype simplekml.Color
     """
     if 'WPA' in encryption:
-        return simplekml.Color.green
+        # green
+        return "ff008000"
     elif 'WEP' in encryption:
-        return simplekml.Color.orange
+        # orange
+        return "ff00a5ff"
     elif 'Open' in encryption: 
-        return simplekml.Color.red
-    else: 
-        return simplekml.Color.yellow
+        # red
+        return "ff0000ff"
+    else:
+        # yellow
+        return "ff00ffff"
 
 
 def export_csv(filename, devices, delimiter=";"):
@@ -76,33 +82,42 @@ def export_csv(filename, devices, delimiter=";"):
             num_plotted = num_plotted + 1
         
     print ("Exported {} devices to {}".format(num_plotted, outfile))
-        
-        
+
+
 def export_kml(filename, title, devices):
     """
-    Export found devices to a KML file which can be imported to Googleearth. 
-    The filename prefix and the list of devices is required. 
-    
+    Export found devices to a KML file which can be imported to Googleearth.
+    The filename prefix and the list of devices is required.
+
     :param filename: Prefix for the filename. The extention "kml" will be added
-    :param devices: list of devices. Each device must be a tuple with 
-                    the followin format (lon, lat, mac, title, encryption, description )
-    """
+    :param title: name which will be added to kml file
+    :param devices: list of devices. Each device must be a tuple in the following format (lon, lat, mac, title, encryption, description )
+   """
     num_plotted = 0
     outfile = "{0}.kml".format(filename)
-    
-    kml = simplekml.Kml()
-    kml.document.name = title
-        
+
+    # create a KML file skeleton
+    k = kml.KML()
+    ns = '{http://www.opengis.net/kml/2.2}'
+
+    doc = kml.Document(ns, "docid", title, '')
+    k.append(doc)
+
+    # create placemark for the access point, and add it to the KML document
     for dev in devices:
-        pt = kml.newpoint(name = dev.ssid)
-        pt.coords = [(dev.location.lon, dev.location.lat, dev.location.alt)]
-        icon_color = get_networkcolor(dev.encryption)
-        pt.style.iconstyle.color = icon_color
-        pt.description = get_description(dev)
+        icon_style = styles.IconStyle(ns=ns, color=get_networkcolor(dev.encryption))
+        style = styles.Style(ns=ns, styles=[icon_style])
+        desc = get_description(dev)
+        p = kml.Placemark(name=dev.ssid, description=desc, styles=[style])
+        p.geometry = geometry.Point(dev.location.lon, dev.location.lat, dev.location.alt)
+        doc.append(p)
         num_plotted = num_plotted + 1
-        
-    kml.save(outfile)
-    print ("Exported {} devices to {}".format(num_plotted, outfile))
+
+    with open (outfile, "w") as f:
+        s = str(k.to_string(prettyprint=True))
+        f.write(s)
+
+    print("Exported {} devices to {}".format(num_plotted, outfile))
 
 
 def gen_aplist():

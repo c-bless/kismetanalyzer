@@ -31,12 +31,12 @@ def parse_networkname(dev):
     if 'kismet.device.base.name' in dev:
         netname = dev['kismet.device.base.name']
 
-    if netname is "":
+    if netname == "":
         if 'dot11.device' in dev:
             if 'dot11.device.last_beaconed_ssid' in dev['dot11.device']:
                 netname = dev['dot11.device']['dot11.device.last_beaconed_ssid']
 
-    if netname is "":
+    if netname == "":
         netname = dev['kismet.device.base.macaddr']
     
     return netname
