@@ -13,6 +13,13 @@ This script is licensed under the GNU General Public License in version 3. See h
 
 
 ## Installation:
+
+### Installation via pip
+```
+pip install kismet-analyzer
+```
+
+### Manual installation from this repository 
 This library requires *simplekml* for exporting extracted information to *kml*. You can use *pip* to install the neccessary requirement.
 ```
 pip install -r requirements.txt
