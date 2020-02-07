@@ -76,9 +76,9 @@ def export_csv(filename, devices, delimiter=";"):
     
     with open(outfile, mode='w') as csv_file:
         w = csv.writer(csv_file, delimiter=delimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        w.writerow(['MAC-Address', 'SSID', 'Encryption'])
+        w.writerow(['MAC-Address', 'SSID', 'Encryption', 'Frequency', 'Channel', 'Manufacturer'])
         for dev in devices:
-            w.writerow([dev.mac, dev.ssid, dev.encryption])
+            w.writerow([dev.mac, dev.ssid, dev.encryption, dev.frequency, dev.channel, dev.manufacturer])
             num_plotted = num_plotted + 1
         
     print ("Exported {} devices to {}".format(num_plotted, outfile))

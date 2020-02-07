@@ -11,13 +11,14 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='kismet-analyzer',
-    version='0.3.0',
+    version='0.3.1',
     author='Christoph Bless',
     author_email='bitbucket@cbless.de',
     url='https://bitbucket.org/cbless/kismetanalyzer',
     license=' GPLv3',
     description=('Library for parsing kismet results from the .kismet database file.'),
     long_description=long_description,
+    long_description_content_type="text/markdown",
     packages=['kismetanalyzer'],
     install_requires=[
         'fastkml',
