@@ -158,7 +158,6 @@ def gen_aplist():
     
     # container for collecting relevant devices
     devs = []
-    
     for row in sql_result:
         try:
             # create a device dictionary from json string stored in the
@@ -169,6 +168,7 @@ def gen_aplist():
             # class kismetanalyzer.model.AccessPoint
             strongest = parameters.strongest
             ap = AccessPoint.from_json(dev, strongest)
+            
             # Apply SSID filter if it is used as parameter (this switch
             # checks the included SSID list, which is provided by the 
             # parameter --ssid 

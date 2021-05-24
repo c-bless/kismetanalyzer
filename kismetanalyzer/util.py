@@ -30,13 +30,14 @@ def parse_networkname(dev):
 
     if 'kismet.device.base.name' in dev:
         netname = dev['kismet.device.base.name']
-
-    if netname == "":
-        if 'dot11.device' in dev:
-            if 'dot11.device.last_beaconed_ssid' in dev['dot11.device']:
+    elif 'dot11.device' in dev:
+            if 'dot11.device.advertised_ssid_map' in dev['dot11.device']:
+                ssid_map = dev['dot11.device']['dot11.device.advertised_ssid_map']
+                if 'dot11.advertisedssid.ssid' in ssid_map:
+                    netname = ssid_map['dot11.advertisedssid.ssid']
+            elif 'dot11.device.last_beaconed_ssid' in dev['dot11.device']:
                 netname = dev['dot11.device']['dot11.device.last_beaconed_ssid']
-
-    if netname == "":
+    else:
         netname = dev['kismet.device.base.macaddr']
     
     return netname
@@ -61,16 +62,30 @@ def parse_loc(dev, strongest=False):
             # strongest location
             if 'kismet.common.location.max_loc' in dev['kismet.device.base.location']:
                 loc = dev['kismet.device.base.location']['kismet.common.location.max_loc']
-                lon = loc['kismet.common.location.lon']
-                lat = loc['kismet.common.location.lat']
-                alt = loc['kismet.common.location.alt']
+                if 'kismet.common.location.lon' in loc \
+                        and 'kismet.common.location.lat' in loc \
+                        and 'kismet.common.location.alt' in loc:
+                    lon = loc['kismet.common.location.lon']
+                    lat = loc['kismet.common.location.lat']
+                    alt = loc['kismet.common.location.alt']
+                elif 'kismet.common.location.geopoint' in loc:
+                    geopoint = loc['kismet.common.location.geopoint']
+                    lat = geopoint[0]
+                    lon = geopoint[1]
         else:
             # average location
             if 'kismet.common.location.avg_loc' in dev['kismet.device.base.location']:
                 loc =  dev['kismet.device.base.location']['kismet.common.location.avg_loc']
-                lon = loc['kismet.common.location.lon']
-                lat = loc['kismet.common.location.lat']
-                alt = loc['kismet.common.location.alt']
+                if 'kismet.common.location.lon' in loc \
+                        and 'kismet.common.location.lat' in loc \
+                        and 'kismet.common.location.alt' in loc:
+                    lon = loc['kismet.common.location.lon']
+                    lat = loc['kismet.common.location.lat']
+                    alt = loc['kismet.common.location.alt']
+                elif 'kismet.common.location.geopoint' in loc:
+                    geopoint = loc['kismet.common.location.geopoint']
+                    lat = geopoint[0]
+                    lon = geopoint[1]
     
     return (lon, lat, alt)
     

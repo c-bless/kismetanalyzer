@@ -66,3 +66,6 @@ target/
 *.kml
 *.csv
 
+# Kismet DB files
+*.kismet
+.json
