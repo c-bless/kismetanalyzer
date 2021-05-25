@@ -178,9 +178,7 @@ def does_ssid_matches(dev, ssid):
     :rtype: boolean
     """
     matched = False
-    for s in dev['dot11.device']['dot11.device.advertised_ssid_map']:
-        if re.match(ssid, dev['dot11.device']['dot11.device.advertised_ssid_map'][s]['dot11.advertisedssid.ssid']):
+    if 'kismet.device.base.name' in dev:
+        if re.match(ssid, dev['kismet.device.base.name']):
             matched = True
-            break
     return matched
-   
