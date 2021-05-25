@@ -29,6 +29,7 @@ setup(
         "console_scripts": [
             "kismet_analyzer_aplist = kismetanalyzer.aplist:gen_aplist",
             "kismet_analyzer_clientlist = kismetanalyzer.clientlist:gen_clientlist",
+            "kismet_analyzer_devices = kismetanalyzer.devices:gen_devlist",
         ]
     }
 )

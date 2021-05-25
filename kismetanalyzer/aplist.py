@@ -72,7 +72,7 @@ def export_csv(filename, devices, delimiter=";"):
     
     num_plotted = 0
     
-    outfile = "{0}.csv".format(filename)
+    outfile = "{0}-aplist.csv".format(filename)
     
     with open(outfile, mode='w') as csv_file:
         w = csv.writer(csv_file, delimiter=delimiter, quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -94,7 +94,7 @@ def export_kml(filename, title, devices):
     :param devices: list of devices. Each device must be a tuple in the following format (lon, lat, mac, title, encryption, description )
    """
     num_plotted = 0
-    outfile = "{0}.kml".format(filename)
+    outfile = "{0}-aplist.kml".format(filename)
 
     # create a KML file skeleton
     k = kml.KML()

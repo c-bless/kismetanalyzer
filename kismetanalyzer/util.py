@@ -18,7 +18,7 @@ def parse_clientmap(dev):
 
 def parse_networkname(dev):
     """
-    This fuction is used to parse the network name (SSID) from the json 
+    This function is used to parse the network name (SSID) from the json
     string, which is written to the device column of the kismet database.
     
     :param dev: json string from the kismet database column "device"
@@ -45,7 +45,7 @@ def parse_networkname(dev):
 
 def parse_loc(dev, strongest=False):
     """
-    This fuction is used to extract the longitude and latitude from a
+    This function is used to extract the longitude and latitude from a
     result set of an SQL query of the kismet database table devices. 
     
     :param row: SQL result set 
@@ -91,7 +91,7 @@ def parse_loc(dev, strongest=False):
     
 def parse_mac(dev):
     """
-    This fuction is used to parse the MAC-Address from the json string, 
+    This function is used to parse the MAC-Address from the json string,
     which is written to the device column of the kismet database.
     
     :param dev: json string from the kismet database column "device"
@@ -106,7 +106,7 @@ def parse_mac(dev):
 
 def parse_encryption(dev):
     """
-    This fuction is used to parse the encryption type from the json string, 
+    This function is used to parse the encryption type from the json string,
     which is written to the device column of the kismet database.
     
     :param dev: json string from the kismet database column "device"
@@ -162,9 +162,66 @@ def parse_manufacturer(dev):
     if 'kismet.device.base.manuf' in dev:
         return dev['kismet.device.base.manuf']
     return ""
-  
-    
 
+
+def parse_name(dev):
+    """
+    This function is used to parse the name from the json string,
+    which is written to the device column of the kismet database.
+
+    :param dev: json string from the kismet database column "device"
+
+    :return: Encryption type as string
+    :rtype: string
+    """
+    if 'kismet.device.base.name' in dev:
+        return dev['kismet.device.base.name']
+    return ""
+
+
+def parse_commonname(dev):
+    """
+    This function is used to parse the "commonname" from the json string,
+    which is written to the device column of the kismet database.
+
+    :param dev: json string from the kismet database column "device"
+
+    :return: Encryption type as string
+    :rtype: string
+    """
+    if 'kismet.device.base.commonname' in dev:
+        return dev['kismet.device.base.commonname']
+    return ""
+
+
+def parse_phyname(dev):
+    """
+    This function is used to parse the "phyname" from the json string,
+    which is written to the device column of the kismet database.
+
+    :param dev: json string from the kismet database column "device"
+
+    :return: Encryption type as string
+    :rtype: string
+    """
+    if 'kismet.device.base.phyname' in dev:
+        return dev['kismet.device.base.phyname']
+    return ""
+
+
+def parse_type(dev):
+    """
+    This function is used to parse the "type" from the json string,
+    which is written to the device column of the kismet database.
+
+    :param dev: json string from the kismet database column "device"
+
+    :return: Encryption type as string
+    :rtype: string
+    """
+    if 'kismet.device.base.type' in dev:
+        return dev['kismet.device.base.type']
+    return ""
 
 
 def does_ssid_matches(dev, ssid):
