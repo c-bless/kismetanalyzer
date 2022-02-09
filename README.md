@@ -4,8 +4,9 @@ This library can be used to analyze the results of the new Kismet version. To fi
 
 The following scripts will be installed:
 
-1. **kismet_analyzer_aplist:** This script can be used to extract access points from the SQLite database *<db>.kismet* and export these results to *csv* and *kml*
+1. **kismet_analyzer_aplist:** This script can be used to extract access points from the SQLite database *<db>.kismet* and export these results to *csv* and *kml*.
 2. **kismet_analyzer_clientlist** This script can be used to create a list of connected clients for a given SSID. The list is printed to stdout with one client mac per row.
+3. **kismet_analyzer_devices** This script can be used to extract a list of discovered devices. The result can be exported to *csv* and *kml*. 
 
 ## License
 
