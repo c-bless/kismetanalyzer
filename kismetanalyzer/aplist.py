@@ -109,7 +109,7 @@ def export_kml(filename, title, devices):
         style = styles.Style(ns=ns, styles=[icon_style])
         desc = get_description(dev)
         p = kml.Placemark(name=dev.ssid, description=desc, styles=[style])
-        p.geometry = geometry.Point(dev.location.lon, dev.location.lat, dev.location.alt)
+        p.geometry = geometry.Point(dev.location.lat, dev.location.lon, dev.location.alt)
         doc.append(p)
         num_plotted = num_plotted + 1
 

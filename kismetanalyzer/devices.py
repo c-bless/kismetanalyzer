@@ -33,13 +33,12 @@ def get_description(dev):
     return description
 
 
-
 def export_csv(filename, devices, delimiter=";"):
     """
     Export found devices to a CSV file. The filename prefix and the list
     of devices is required. The delimiter is optional.
 
-    :param filename: Prefix for the filename. The extention "csv" will be added
+    :param filename: Prefix for the filename. The extension "csv" will be added
     :param devices: list of devices. Each device must be a tuple with
                     the following format (lon, lat, mac, title, encryption, description )
     :param delimiter: Delimiter to use for separation of columns (optional)
@@ -65,7 +64,7 @@ def export_kml(filename, title, devices):
     Export found devices to a KML file which can be imported to Googleearth.
     The filename prefix and the list of devices is required.
 
-    :param filename: Prefix for the filename. The extention "kml" will be added
+    :param filename: Prefix for the filename. The extension "kml" will be added
     :param title: name which will be added to kml file
     :param devices: list of devices. Each device must be a tuple in the following format (lon, lat, mac, title, encryption, description )
    """
@@ -85,7 +84,7 @@ def export_kml(filename, title, devices):
         style = styles.Style(ns=ns, styles=[icon_style])
         desc = get_description(dev)
         p = kml.Placemark(name=dev.name, description=desc, styles=[style])
-        p.geometry = geometry.Point(dev.location.lon, dev.location.lat, dev.location.alt)
+        p.geometry = geometry.Point(dev.location.lat, dev.location.lon, dev.location.alt)
         doc.append(p)
         num_plotted = num_plotted + 1
 
